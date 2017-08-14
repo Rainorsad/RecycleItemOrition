@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
+group='com.github.Rainorsad'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
@@ -28,5 +30,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:design:25.3.1'
 }
