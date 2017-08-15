@@ -19,17 +19,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.recycle);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        ItemOrition itemOrition = new ItemOrition(this);
-        itemOrition.setColor(0xFFDBD6D2);
-        recyclerView.addItemDecoration(itemOrition);
-        recyclerView.setLayoutManager(manager);
-
         s = new ArrayList<>();
-        for (int i=0;i<20;i++){
+        for (int i=0;i<40;i++){
             s.add(i+"哈哈哈");
         }
+        recyclerView = (RecyclerView) findViewById(R.id.recycle);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.addItemDecoration(new ItemOrition(this, ItemOrition.VERTICAL,0XFF0ABFFA,0XFFDDDDDD, new ItemOrition.DecorationCallback() {
+            @Override
+            public long getGroupId(int position) {
+                return Character.toUpperCase(s.get(position).charAt(0));
+            }
+
+            @Override
+            public String getGroupFirstLine(int position) {
+                return s.get(position).substring(0,1).toUpperCase();
+            }
+        }));
+        recyclerView.setLayoutManager(manager);
+
         MyAdapter adapter = new MyAdapter(s);
         recyclerView.setAdapter(adapter);
     }
