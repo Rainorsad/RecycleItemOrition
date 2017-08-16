@@ -51,6 +51,7 @@ itemOrition.setImageLabel(boolean isimglabel, int imgResource)(isimglabel true,i
  
  recyclerView.addItemDecoration(new ItemOrition(Context context, int orientation, int backgroundcolor,int titlecolor,int
  titleTextSize,int titleTextLeftPadding, new ItemOrition.DecorationCallback() {
+ 
             @Override
             public long getGroupId(int position) {
                 return Character.toUpperCase(s.get(position).charAt(0));
