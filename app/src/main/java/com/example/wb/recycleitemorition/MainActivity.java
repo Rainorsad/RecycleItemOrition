@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         }
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.addItemDecoration(new ItemOrition(this, ItemOrition.VERTICAL,0XFF0ABFFA,0XFFDDDDDD, new ItemOrition.DecorationCallback() {
+        recyclerView.addItemDecoration(new ItemOrition(this, ItemOrition.VERTICAL,0XFF0ABFFA,0XFFDDDDDD,0,10, new ItemOrition.DecorationCallback() {
             @Override
             public long getGroupId(int position) {
                 return Character.toUpperCase(s.get(position).charAt(0));

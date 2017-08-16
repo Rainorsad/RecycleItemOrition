@@ -50,9 +50,11 @@ public class ItemOrition extends RecyclerView.ItemDecoration {
     private boolean isimglabel = false;//是否出现文字标签
     private int imgResource;//图片资源
 
-    private boolean sectionBoolean = false;//打开标签属性
+    private boolean sectionBoolean = false;//打开浮动头属性
     private DecorationCallback callback;
     private TextPaint paintText;
+    private int titleTextSize;
+    private int titleTextLeftPad;
     private int topGap;
     private Paint.FontMetrics fontMetrics;
 
@@ -81,6 +83,41 @@ public class ItemOrition extends RecyclerView.ItemDecoration {
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
         paintText.setAntiAlias(true);
         paintText.setTextSize(80);
+        paintText.setColor(titlecolor);
+        paintText.getFontMetrics(fontMetrics);
+        paintText.setTextAlign(Paint.Align.LEFT);
+        fontMetrics = new Paint.FontMetrics();
+        topGap = context.getResources().getDimensionPixelOffset(R.dimen.dp_32);
+    }
+
+    /**
+     *
+     * @param context
+     * @param orientation 水平还是垂直
+     * @param backgroundcolor  主题栏背景色
+     * @param titlecolor 标题颜色
+     * @param titleTextSize 标题大小
+     * @param titleTextLeftPadding 标题距左边距离
+     * @param callback
+     */
+    public ItemOrition(Context context, int orientation, int backgroundcolor,int titlecolor,int titleTextSize,int titleTextLeftPadding,DecorationCallback callback) {
+        this.context = context;
+        this.orientation = orientation;
+        mPaint = new Paint();
+        scale = context.getResources().getDisplayMetrics().density; //将dp转换为px
+        this.callback = callback;
+        this.sectionBoolean = true;
+        this.titleTextSize = titleTextSize;
+        this.titleTextLeftPad = titleTextLeftPadding;
+
+        mPaint.setColor(backgroundcolor);
+        paintText = new TextPaint();
+        paintText.setTypeface(Typeface.DEFAULT_BOLD);
+        paintText.setAntiAlias(true);
+        paintText.setTextSize(80);
+        if (titleTextSize > 0){
+            paintText.setTextSize(scale*titleTextSize+0.5f);
+        }
         paintText.setColor(titlecolor);
         paintText.getFontMetrics(fontMetrics);
         paintText.setTextAlign(Paint.Align.LEFT);
@@ -169,6 +206,7 @@ public class ItemOrition extends RecyclerView.ItemDecoration {
                 int position = parent.getChildAdapterPosition(child);
                 pregroup = groupId;
                 groupId = callback.getGroupId(position);
+                //保证只有每组第一个才会出现
                 if (groupId < 0 || pregroup == groupId) continue;
                 String textLine = callback.getGroupFirstLine(position).toUpperCase();
                 if (TextUtils.isEmpty(textLine)) continue;
@@ -182,7 +220,9 @@ public class ItemOrition extends RecyclerView.ItemDecoration {
                     }
                 }
                 c.drawRect(left, textY - topGap, right, textY, mPaint);
-                c.drawText(textLine, left, textY, paintText);
+                Rect rect = new Rect();
+                paintText.getTextBounds(textLine,0,textLine.length(),rect);
+                c.drawText(textLine, left + (titleTextLeftPad * scale + 0.5f), textY  + (32-(rect.bottom - rect.top))/2, paintText);
             }
         }
 
@@ -247,7 +287,6 @@ public class ItemOrition extends RecyclerView.ItemDecoration {
 
     /**
      * 判断是否是该组数据第一个
-     *
      * @param position
      * @return
      */
