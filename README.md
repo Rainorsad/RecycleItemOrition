@@ -47,7 +47,8 @@ itemOrition.setImageLabel(boolean isimglabel, int imgResource)(isimglabel true,i
 * @param titleTextSize 标题大小
 * @param titleTextLeftPadding 标题距左边距离
 * @param callback 内置回掉借口，传入数据的第一个字母的大写
- */
+*/
+ 
  recyclerView.addItemDecoration(new ItemOrition(Context context, int orientation, int backgroundcolor,int titlecolor,int
  titleTextSize,int titleTextLeftPadding, new ItemOrition.DecorationCallback() {
             @Override
