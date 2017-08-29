@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 
 import com.example.itemorition.ItemOrition;
 
@@ -35,6 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         HeadView headView = new HeadView(this);
 
-        adapter.addHeaderView(headView.createView());
+        adapter.addHeaderView(LayoutInflater.from(this).inflate(R.layout.activity_textviewcolor,null));
     }
 }

@@ -12,14 +12,10 @@ import android.widget.Toast;
  */
 
 public class HeadView {
-    private Context context;
-    private Button button;
-    private TextView textView;
-
+    private Context context;private Button button;private TextView textView;
     public HeadView(Context context) {
         this.context = context;
     }
-
     public View createView(){
         LayoutInflater layout = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View headView = layout.inflate(R.layout.headview,null); //头部视图
@@ -27,12 +23,10 @@ public class HeadView {
         headOnClick();//头部控件监听
         return headView;
     }
-
     private void headFindViewById(View headView) {
         button = (Button) headView.findViewById(R.id.headview_but);
         textView = (TextView) headView.findViewById(R.id.head_tv);
     }
-
     private void headOnClick() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override

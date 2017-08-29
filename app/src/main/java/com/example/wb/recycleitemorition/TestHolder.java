@@ -16,33 +16,27 @@ import java.util.List;
  */
 
 public class TestHolder extends HFViewAdapter{
-
     private Context context;
     private List<String> data;
-
     protected TestHolder(Context c, List s) {
         super(c, s);
         this.context = c;
         this.data = s;
     }
-
     @Override
     protected RecyclerView.ViewHolder onCreateViewHolde(ViewGroup parent, int viewType) {
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_textviewcolor, parent, false);
         return new MyHolder(layout);
     }
-
     @Override
     protected void onBindViewHolde(RecyclerView.ViewHolder holder, int position) {
         MyHolder myHolder = (MyHolder) holder;
         myHolder.text.setText(data.get(position));
     }
-
     @Override
     protected int getItemCounts() {
         return data.size();
     }
-
     class MyHolder extends RecyclerView.ViewHolder{
         TextView text;
         public MyHolder(View itemView) {
