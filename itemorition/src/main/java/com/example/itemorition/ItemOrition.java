@@ -173,7 +173,7 @@ public class ItemOrition extends RecyclerView.ItemDecoration {
         Paint mpaint = new Paint();
         int itemCounrt = state.getItemCount();
         int childcount = parent.getChildCount();
-        float lineHeight = paintText.getTextSize() + fontMetrics.descent;
+//        float lineHeight = paintText.getTextSize() + fontMetrics.descent;
         long pregroup, groupId = -1;
         for (int i = 0; i < childcount; i++) {
             View child = parent.getChildAt(i);

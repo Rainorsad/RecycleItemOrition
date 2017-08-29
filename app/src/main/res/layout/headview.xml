@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:gravity="center"
+        android:textSize="25sp"
+        android:id="@+id/head_tv"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="头部"
+        />
+
+    <Button
+        android:id="@+id/headview_but"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="确定"
+        />
+</LinearLayout>

@@ -20,25 +20,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         s = new ArrayList<>();
-        for (int i=0;i<40;i++){
-            s.add(i+"哈哈哈");
+        for (int i=0;i<20;i++){
+            s.add(i+"嘻嘻嘻");
         }
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.addItemDecoration(new ItemOrition(this, ItemOrition.VERTICAL,0XFF0ABFFA,0XFFDDDDDD,0,10, new ItemOrition.DecorationCallback() {
-            @Override
-            public long getGroupId(int position) {
-                return Character.toUpperCase(s.get(position).charAt(0));
-            }
+        ItemOrition orition = new ItemOrition(this);
+        recyclerView.addItemDecoration(orition);
 
-            @Override
-            public String getGroupFirstLine(int position) {
-                return s.get(position).substring(0,1).toUpperCase();
-            }
-        }));
         recyclerView.setLayoutManager(manager);
 
-        MyAdapter adapter = new MyAdapter(s);
+        TestHolder adapter = new TestHolder(this,s);
         recyclerView.setAdapter(adapter);
+
+        HeadView headView = new HeadView(this);
+
+        adapter.addHeaderView(headView.createView());
     }
 }
