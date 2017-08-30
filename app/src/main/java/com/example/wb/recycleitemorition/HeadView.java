@@ -21,8 +21,14 @@ public class HeadView {
         View headView = layout.inflate(R.layout.headview,null); //头部视图
         headFindViewById(headView);//获得头部控件
         headOnClick();//头部控件监听
+        intCall();//联网请求数据
         return headView;
     }
+
+    private void intCall() {
+
+    }
+
     private void headFindViewById(View headView) {
         button = (Button) headView.findViewById(R.id.headview_but);
         textView = (TextView) headView.findViewById(R.id.head_tv);
